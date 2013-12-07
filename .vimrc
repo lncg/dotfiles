@@ -1,37 +1,29 @@
 "使用 vundule 管理vim插件
 filetype off " required!
 if(has("win32") || has("win64"))
-  let g:iswindows=1
-  set guifont=Lucida\ Console:h12:cANSI
-  set guifontwide=Lucida\ Console:h12:cGB2312
+	let g:iswindows=1
 else
-  let g:iswindows=0
+	let g:iswindows=0
 endif
 
 if g:iswindows==1
 	if has('vim_starting')
-	  set runtimepath+=D:\installed\vim_set\bundle\neobundle.vim
+		set runtimepath+=D:\installed\vim_set\bundle\neobundle.vim
 	endif
 	call neobundle#rc(expand('D:\installed\vim_set\bundle'))
-	
+
 	set guifont=Lucida\ Console:h20:cANSI
 	set guifontwide=Lucida\ Console:h20:cGB2312
-	
-	
-	nmap <silent> <Leader>ee :e C:\Program Files (x86)\Vim\_vimrc <CR>
 
-	map <silent> <Leader>rs :source ~/.vimrc <CR>
-	
+	nmap <silent> <Leader>ee :e C:\Program Files (x86)\Vim\_vimrc <CR>
 else
 	if has('vim_starting')
-	  set runtimepath+=~/.vim/bundle/neobundle.vim/
+		set runtimepath+=~/.vim/bundle/neobundle.vim/
 	endif
 	call neobundle#rc(expand('~/.vim/bundle/'))
 
 	nmap <silent> <Leader>ee :e ~/.vimrc <CR>
 	map <silent> <Leader>rs :source ~/.vimrc <CR>
-	"When .vimrc file is edited, reload it
-	"autocmd! bufwritepost .vimrc source ~/.vimrc
 endif
 
 NeoBundle 'Shougo/vimproc'
@@ -39,7 +31,7 @@ NeoBundle 'Shougo/vimproc'
 " C/C++
 NeoBundle 'a.vim'
 NeoBundle 'echofunc.vim'
-" NeoBundle 'FencView.vim'
+NeoBundle 'FencView.vim'
 NeoBundle 'Twinside/vim-cuteErrorMarker'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Shougo/neosnippet'
@@ -49,18 +41,14 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Lokaltog/TagHighlight'
 
-" NeoBundle 'taglist.vim'
-" NeoBundle 'EasyColour'
-
 " Python
-" NeoBundle 'kevinw/pyflakes-vim'
-" NeoBundle 'fs111/pydoc.vim'
-" NeoBundle 'indentpython.vim'
-" NeoBundle 'hdima/python-syntax'
+NeoBundle 'kevinw/pyflakes-vim'
+NeoBundle 'indentpython.vim'
+NeoBundle 'hdima/python-syntax'
 
 " Tools
 NeoBundle 'motemen/git-vim'
-NeoBundle 'sessions.vim'
+" NeoBundle 'sessions.vim'
 NeoBundle 'mru.vim'
 NeoBundle 'YankRing.vim'
 NeoBundle 'shellinsidevim.vim'
@@ -86,13 +74,12 @@ NeoBundle 'Gundo'
 NeoBundle 'L9'
 NeoBundle 'genutils'
 NeoBundle 'git://github.com/myusuf3/numbers.vim.git'
+NeoBundle 'autoproto.vim'
 " NeoBundle 'QuickFixCurrentNumber'
 
-" NeoBundle 'humiaozuzu/TabBar'
+NeoBundle 'humiaozuzu/TabBar'
 "NeoBundle 'tpope/vim-afterimage'
 "NeoBundle 'Engspchk'
-" NeoBundle 'Conque-Shell'
-" NeoBundle 'ScrollColors'
 "NeoBundle 'quickfixsigns'
 
 " HTML/PHP
@@ -126,13 +113,11 @@ endif
 set backspace=eol,start,indent
 set nocompatible        "去掉有关vi一致性模式，避免以前版本的一些bug和局限
 set number				"显示行号
-" set mouse=a				"支持鼠标选择
-set mouse=v			"支持鼠标复制(have line number)
 set updatecount=100		"设置击键 updatecount 次数后更新交换文件
-set history=20			"记录历史的行数
+set history=200			"记录历史的行数
 
-set wildmode=longest:full:list	" auto completion and menu
 set wildmenu
+set wildmode=longest:full:list	" auto completion and menu
 set completeopt=longest,menuone " text completion settings
 
 set scrolloff=5			"设定光标离窗口上下边界 5 行时窗口自动滚动
@@ -144,7 +129,7 @@ set sta					"插入时使用'shiftwidth'
 set autoindent			"vim使用自动对起，把当前行的对起格式应用到下一行；
 set smartindent			"依据上面的对起格式，智能的选择对起方式，对于类似C语言编写上很有用
 set showmatch			"设置匹配模式，输入一个左括号时会匹配相应的右括号
-" set matchtime=2
+set autochdir
 
 set ruler				"在编辑过程中，在右下角显示光标位置的状态行
 " set wrap				"内容多时,换行显示
@@ -161,26 +146,25 @@ set hlsearch			"在查找时，高亮匹配字符串	:set nohlsearch
 set incsearch			"查询时实时匹配符合条件的字符串
 set ignorecase			"搜索时忽略大小写   :set noignorecase
 set smartcase			"但在有一个或以上大写字母时,仍保持对大小写敏感
-"set spell	            "开启拼写检查功能		a,et nospell 关闭拼写检查功能
+"set spell	            "开启拼写检查功能		:set nospell 关闭拼写检查功能
 set gdefault			"替换时所有的行内匹配都被替换，而不是只有第一个
 set magic				"魔法配置搜索时可使用特殊符号,for regular expressions
 
-
 set winaltkeys=no		"Alt组合键不映射到菜单上
 set hid					"允许在有未保存的修改时切换缓冲区，此时的修改切换由 vim 负责保存
-"set backup
-"set backupdir=$HOME/.vimbackup	" Set backup directory
+" set writebackup
+" set backup=on
+" set backupdir=$HOME/.vimtmp		" Set backup directory
 "autocmd BufWritePre * let &backupext = strftime(".%m-%d--%H-%M")
 
 
-" set textwidth=80
-" au BufRead
-"syntax match logline "^.\{80,}$"
+" syntax match logline "^.\{80,}$"
 au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
 " set formatoptions+=tcqlnm
 set winminheight=0   	"window minimum height
 set shortmess=atI
 if v:version > 702
+	set textwidth=80
 	set cc=80
 endif
 
@@ -193,42 +177,36 @@ let mapleader = ","
 map <Leader>bi :NeoBundleInstall<CR>
 
 
-" 用默认的程序打开文件 " FIXME xdg-open 的配置在哪里？
-nmap <C-F5> :!xdg-open %<CR>
+" 用默认的程序打开文件 TODO: xdg-open 的配置在哪里？
+nmap <F9> :!xdg-open %<CR>
 
 "Insert current time.
 map <F8> O// <C-R>=strftime("%c")<CR><ESC>^
 
 "Fast editing of .vimrc
 nmap <silent> <Leader>ee :e ~/.vimrc <CR>
-" nmap <silent> <leader> :e ~/.config/awesome/rc.lua<CR>
 
 "Fast reloading of the .vimrc
 map <silent> <Leader>rs :source ~/.vimrc <CR>
 
+"When .vimrc file is edited, reload it TODO:
+" autocmd bufwritepost ~/.vimrc source ~/.vimrc
+
 map <silent> <Leader>ss :e %<CR>
-
-"When .vimrc file is edited, reload it
-"autocmd! bufwritepost .vimrc source ~/.vimrc
-
 
 "diffsplit [file]		"水平分割窗口进行文件比较
 "vertical diffsplit [file]	"竖直分割窗口进行文件比较
 
-"缩进线设置，这里你可以把“|”改为你喜欢的缩进线符号，推荐使用“:”或者“.”。缩进线只有对Tab缩进有效
+"缩进线设置
 set list
-" 注意: \|\后面有个空格
-" set lcs=tab:\|\ 
 set ambiwidth=single
+" 注意: \|\后面有个空格
 set lcs=tab:\┆\ 
+
 inoremap jk <ESC>
-
 inoremap ,, <ESC>
-
 inoremap ;; <ESC>:update<CR>
 map ;; :update<CR>
-inoremap ,, <ESC>:update<CR>
-map ,, :update<CR>
 inoremap zz <ESC>:update<CR>
 map zz :update<CR>
 inoremap ZZ <ESC>:update<CR>:q<CR>
@@ -241,8 +219,8 @@ map <Leader>aq :qall<CR>
 
 
 nmap <leader>w :w!<cr>	"Fast saving
-nmap <Leader>ws :w !sudo tee % > /dev/null<CR>		" Need reload file.
-
+nmap <Leader>ws :w !sudo tee % > /dev/null<CR>		
+"
 set autoread			"Set to auto read when a file is changed from the outside
 set autowrite
 set lazyredraw			"执行宏、寄存器和其它不通过输入的命令时屏幕不会重画
@@ -273,18 +251,11 @@ nmap wv     <C-w>v     " 垂直分割当前窗口
 nmap wc     <C-w>c     " 关闭当前窗口
 nmap ws     <C-w>s     " 水平分割当前窗口
 
-autocmd BufEnter * cd %:p:h  "自动将Vim工作目录迁移到所打开文本文件的目录下
-
 map <Leader>bb :%!xxd<CR>
 map <Leader>br :%!xxd -r<CR>
 
 " Ctrl+A实现全选
 map <C-A> ggVG
-
-"用Ctrl+S保存文件
-" nmap <silent> <C-S> :update<CR>
-" imap <silent> <C-S> <ESC>:update<CR>
-" vmap <silent> <C-S> <ESC>:update<CR>
 
 "Ctrl+V键粘贴
 inoremap <C-v> <esc>a<space><esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopaste<cr>
@@ -306,10 +277,7 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 状态栏设置
 "======================================================================
 set laststatus=2     " always show the status line
-"set statusline=[%F]%y%r%m%*%=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}[L:%l/%L,C:%c][%p%%]\ %=[%{GitBranch()}]
 set statusline=[%F]%y%r%m%*%=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ [C:%c,\ L:%l/%L,\ %p%%]\ %=[%{GitBranch()}]
-" set statusline=[%F]%y%r%m%*%=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}[C:%c,L:%p%%]\ %=[%{GitBranch()}]
-" set statusline=[%F]%y%r%m%*%=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}[C:%c,L:%p%%]
 " set statusline=%F%m%r%h%w\ [%{&ff}]\ [%Y]\ [%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]\ %=[%{GitBranch()}]
 
 
@@ -317,7 +285,8 @@ set statusline=[%F]%y%r%m%*%=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}\ [C:%c,\ 
 " programming set
 "======================================================================
 autocmd FileType c,cpp,java,lua,javascript,css inoremap { {}<LEFT><CR><UP><ESC>$a<CR>
-
+autocmd FileType python,ks set expandtab
+autocmd FileType python map <buffer> <Space> :update<CR>:!python2 %<CR>
 autocmd FileType perl map <buffer> <Space> :update<CR>:!perl %<CR>
 
 
@@ -347,9 +316,6 @@ au BufWritePost *.cpp,*.h,*.c,*.def,*.py,*.java,*.html call system("ctags")
 set tags+=~/.vim/stl_tags
 set tags+=tags
 set tags+=~/.vim/systags 	"autoproto.vim
-" set autochdir
-"set tags=tags;/
-
 
 "======================================================================
 " plugin - TabBar
@@ -380,11 +346,6 @@ map <C-C> :Shell<Space>
 "======================================================================
 nmap <leader>ch : ToggleWord<CR>
 
-"======================================================================
-" plugin - colorizer
-"======================================================================
-nmap <Leader>sc <Plug>Colorizer
-
 
 "======================================================================
 "Markdown to HTML
@@ -393,7 +354,6 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nmap <leader>md :Shell rm ~/markdown.html<CR>:%!~/Yunio/script/Markdown.pl --html4tags<CR>:w ~/markdown.html<CR>u
 
 
-colorscheme molokai
 "======================================================================
 " plugin - pyflakes.vim
 "======================================================================
@@ -420,10 +380,10 @@ nnoremap <Leader>gp :GitPush -u origin master<CR>
 "======================================================================
 " plugin - autopreview
 "======================================================================
-let g:AutoPreview_enabled=0
+" let g:AutoPreview_enabled=1
 " nnoremap <F6> :AutoPreviewToggle<CR>
 " inoremap <F6><ESC> :AutoPreviewToggle<CR>i
-set updatetime=500
+" set updatetime=500
 
 
 "======================================================================
@@ -435,15 +395,7 @@ set updatetime=500
 "  :SS without parameter saves current session loaded with :SL or created
 "      with SN.
 "  :SM <name> --- merge session <name> into current one.
-map <S-L> :SL<Space>
-
-"======================================================================
-" taglist.vim
-"======================================================================
-" let Tlist_Exit_OnlyWindow =  1 "如果taglist窗口是最后一个窗口，则退出vim
-" let Tlist_Use_Right_Window = 0 "让taglist窗口在左边显示
-" "map <F3> :silent! Tlist<CR> "按下F3弹出
-" let Tlist_File_Fold_Auto_Close=1 "非当前文件，函数列表折叠隐藏
+" map <S-L> :SL<Space>
 
 
 "======================================================================
@@ -471,31 +423,16 @@ cmap <Leader>tw <Plug>Transposewords
 
 
 "======================================================================
-" plugin - pydoc.vim
-"======================================================================
-" <lead>pw :view the documentation of the 'word' under the cursor.
-let g:pydoc_cmd="/usr/bin/pydoc"
-"let g:pydoc_highlight=0
-
-
-"======================================================================
 " plguin - Grep
 "======================================================================
 nnoremap <silent> <F3> :Grep<CR>
 
 
 "======================================================================
-" plguin - Notes.vim
+" plguin - Notes
 "======================================================================
 map <Leader>nn :cd ~/.notes<CR>:e<Space>
 map <Leader>nc :cd ~/Yunio/code/<CR>:e<Space>
-
-
-"======================================================================
-" plugin - cmdline-complete.vim : http://www.vim.org/scripts/script.php?script_id=2222
-"======================================================================
-"cmap <c-n> <Plug>CmdlineCompleteBackward
-"cmap <c-p> <Plug>CmdlineCompleteForward
 
 
 "======================================================================
@@ -509,8 +446,6 @@ map <Leader>nc :cd ~/Yunio/code/<CR>:e<Space>
 let NERD_c_alt_style = 1     " 将C语言的注释符号改为//, 默认是/**/
 let NERDSpaceDelims=1       " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1   " 多行注释时样子更好看
-
-map <Leader>c :NERDComComment
 
 
 "======================================================================
@@ -591,18 +526,14 @@ let g:bufExplorerDetailedHelp=1      " Show detailed help.
 " let g:bufExplorerShowUnlisted=1      " Show unlisted buffers.
 
 
-
 "======================================================================
 " plguin -  mru.vim
 "======================================================================
 " :MRU
 " :MRU filename
 let MRU_Max_Entries = 100
-let g:MRU_File = $HOME.'/.vimtmp/vim_mru_files'
-" let g:MRU_File = '/dev/shm/vimtmp/vim_mru_files'
 map <leader>mm :MRU<CR>
 if g:iswindows == 0
-	colorscheme molokai
 	let g:MRU_File = $HOME.'/.vimtmp/vim_mru_files'
 else
 endif
@@ -684,6 +615,7 @@ inoremap <expr><esc>e  neocomplcache#cancel_popup()
 " inoremap <expr><ESC>n  pumvisible() ? "\<esc>n" : neocomplcache#manual_keyword_complete()
 " inoremap <expr><esc>n  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+
 "======================================================================
 " plguin - echofunc.vim : 在控制栏显示函数定义
 "======================================================================
@@ -717,12 +649,6 @@ function! s:i_Tab_plus()
 		return "\<C-x>\<C-n>"
 	endif
 endf
-
-
-"======================================================================
-" plugin -- ConqueTerm
-"======================================================================
-map <F1> :ConqueTermTab bash<CR>
 
 
 "======================================================================
@@ -889,31 +815,6 @@ function! s:align()
 endfunction
 
 
-" inoremap <silent> = =<Esc>:call <SID>ealign()<CR>a
-" function! s:ealign()
-	" let p = '^.*=\s.*$'
-	" if exists(':Tabularize') && getline('.') =~# '^.*=' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-		" let column = strlen(substitute(getline('.')[0:col('.')],'[^=]','','g'))
-		" let position = strlen(matchstr(getline('.')[0:col('.')],'.*=\s*\zs.*'))
-		" Tabularize/=/l1
-		" normal! 0
-		" call search(repeat('[^=]*=',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-	" endif
-" endfunction
-
-"======================================================================
-" plugin - vimim.vim :
-"======================================================================
-let g:vimim_map='c-bslash'
-let g:vimim_cloud=-1
-"let g:vimim_cloud='sogou,dynamic'
-"let g:vimim_cloud='google,baidu,sogou,qq'
-"let g:vimim_cloud='sogou'
-"let g:vimim_static_input_style=1
-let g:vimim_punctuation=0		"不用中文标点
-"let g:vimim_shuangpin = 1
-
-
 "======================================================================
 " color - molokai
 "======================================================================
@@ -1005,7 +906,6 @@ endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
 
-
 "======================================================================
 " plguin - a.vim  .h/.cpp 文件切换
 "======================================================================
@@ -1055,7 +955,6 @@ endfunction
 nmap ,ha :call InsertHeadDefN()<CR>
 
 
-
 "======================================================================
 " 删除一个缓冲区文件时,不关闭窗口
 "======================================================================
@@ -1078,6 +977,7 @@ function! <SID>BufcloseCloseIt()
 	endif
 endfunction
 
+
 "======================================================================
 " plugin -- gist
 "======================================================================
@@ -1093,56 +993,6 @@ endif
 let g:TagHighlightSettings['ForcedPythonVariant'] = 'if_pyth'
 let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
 
-
-"======================================================================
-" Python
-"======================================================================
-autocmd FileType python,ks set expandtab
-autocmd FileType python map <buffer> <Space> :update<CR>:!python2 %<CR>
-
-"======================================================================
-" Debug Python
-"======================================================================
-" python << EOF
-" import time
-" import vim
-" def SetBreakpoint():
-    " nLine = int( vim.eval( 'line(".")'))
-    " strLine = vim.current.line
-    " i = 0
-    " strWhite = ""
-    " while strLine[i] == ' ' or strLine[i] == "\t":
-        " i += 1
-        " strWhite += strLine[i]
-    " vim.current.buffer.append(
-       " "%(space)spdb.set_trace() %(mark)s Breakpoint %(mark)s" %
-         " {'space':strWhite, 'mark': '#' * 30}, nLine - 1)
-    " for strLine in vim.current.buffer:
-        " if strLine == "import pdb":
-            " break
-        " else:
-            " vim.current.buffer.append( 'import pdb', 0)
-            " vim.command( 'normal j1')
-            " break
-" def RemoveBreakpoints():
-    " nCurrentLine = int( vim.eval( 'line(".")'))
-    " nLines = []
-    " nLine = 1
-    " for strLine in vim.current.buffer:
-        " if strLine == 'import pdb' or strLine.lstrip()[:15] == 'pdb.set_trace()':
-            " nLines.append( nLine)
-        " nLine += 1
-    " nLines.reverse()
-    " for nLine in nLines:
-        " vim.command( 'normal %dG' % nLine)
-        " vim.command( 'normal dd')
-        " if nLine < nCurrentLine:
-            " nCurrentLine -= 1
-    " vim.command( 'normal %dG' % nCurrentLine)
-
-" vim.command( 'map <leader>bp :py SetBreakpoint()<CR>i<backspace><S-TAB><ESC>')
-" vim.command( 'map <leader>rp :py RemoveBreakpoints()<cr>')
-" EOF
 
 
 nmap cn :cn<cr>
@@ -1181,9 +1031,7 @@ endif
 au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent execute "!chmod a+x <afile>" | endif | endif
 
 
-
 " set color of  current Column:
-map ,cur :call SetColorColumn()<CR>
 function! SetColorColumn()
 	let col_num = virtcol(".")
 	let cc_list = split(&cc, ',')
@@ -1193,6 +1041,7 @@ function! SetColorColumn()
 		execute "set cc-=".col_num
 	endif
 endfunction
+map ,cur :call SetColorColumn()<CR>
 
 "##### auto fcitx  ###########
 let g:input_toggle = 1
@@ -1233,3 +1082,23 @@ autocmd InsertLeave * call Fcitx2en()
 
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+
+
+" VIMINFO {{{4
+" COMMENTED OUT {{{5
+"  "       Maximum number of lines saved for each register
+"  %       When included, save and restore the buffer lis
+"  '       Maximum number of previously edited files for which the marks are remembere
+"  /       Maximum number of items in the search pattern history to be saved
+"  :        Maximum number of items in the command-line history
+"  <       Maximum number of lines saved for each register.
+"   @       Maximum number of items in the input-line history
+"  h       Disable the effect of 'hlsearch' when loading the viminfo
+"  n       Name of the viminfo file.  The name must immediately follow the 'n'. 
+"  r       Removable media.  The argument is a string
+"  s       Maximum size of an item in Kbyte
+" }}}5 COMMENTED OUT
+
+" let &viminfo="%203,'200,/800,h,<500,:500,s150,r/tmp,r" .expand("$BKDIR")."/tmp/.vim,n" . expand("$BKDIR") ."/.vim/.vinfo"
+" }}}4 ENDOF VIMINFO
+colorscheme molokai
