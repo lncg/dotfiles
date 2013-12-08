@@ -295,7 +295,7 @@ if has("cscope") && executable("cscope")
 	nmap csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 	" 生成新的数据库
 	" nmap csn :lcd %:p:h<CR>:!my_cscope<CR>
-	nmap csn :lcd %:p:h<CR>:!cscope -Rbkq<CR>
+	nmap csn :lcd %:p:h<CR>:!my_cscope.sh<CR>
 	" 自己来输入命令
 	nmap cs<Space> :cs find
 endif
