@@ -152,10 +152,6 @@ set magic				"魔法配置搜索时可使用特殊符号,for regular expressions
 
 set winaltkeys=no		"Alt组合键不映射到菜单上
 set hid					"允许在有未保存的修改时切换缓冲区，此时的修改切换由 vim 负责保存
-" set writebackup
-" set backup=on
-" set backupdir=$HOME/.vimtmp		" Set backup directory
-"autocmd BufWritePre * let &backupext = strftime(".%m-%d--%H-%M")
 
 
 " syntax match logline "^.\{80,}$"
@@ -263,14 +259,46 @@ inoremap <C-v> <esc>a<space><esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopast
 "设置cscope，是否使用 quickfix 窗口来显示 cscope 结果, " <C-_>s的按法是先按"Ctrl+Shift+-",然后很快再按"s"
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 "set cscopetag        "用cscope 代替 ctags
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+if has("cscope") && executable("cscope")
+	" 设置 [[[2
+	set csto=1
+	set cst
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+	" add any database in current directory
+	function Lilydjwg_csadd()
+		set nocsverb
+		if filereadable("cscope.out")
+			cs add cscope.out
+		endif
+		set csverb
+	endfunction
+
+	autocmd FileType c,cpp call Lilydjwg_csadd()
+
+	" 映射 [[[2
+	" 查找C语言符号，即查找函数名、宏、枚举值等出现的地方
+	nmap css :cs find s <C-R>=expand("<cword>")<CR><CR>
+	" 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
+	nmap csg :cs find g <C-R>=expand("<cword>")<CR><CR>
+	" 查找本函数调用的函数
+	nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>
+	" 查找调用本函数的函数
+	nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>
+	" 查找指定的字符串
+	nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>
+	" 查找egrep模式，相当于egrep功能，但查找速度快多了
+	nmap cse :cs find e <C-R>=expand("<cword>")<CR><CR>
+	" 查找并打开文件，类似vim的find功能
+	nmap csf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	" 查找包含本文件的文件
+	nmap csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	" 生成新的数据库
+	" nmap csn :lcd %:p:h<CR>:!my_cscope<CR>
+	nmap csn :lcd %:p:h<CR>:!cscope -Rbkq<CR>
+	" 自己来输入命令
+	nmap cs<Space> :cs find
+endif
 
 
 "======================================================================
@@ -1014,6 +1042,12 @@ if v:version > 703
 	set undofile
 	set undolevels=100
 	set undodir=~/.vimtmp/undodir
+	
+	" set writebackup
+	" set backup
+	" set backupdir=~/.vimtmp/backup,.		" Set backup directory
+	" set directory=~/.vimtmp/backup,.		" Set backup directory
+	" autocmd BufWritePre * let &backupext = strftime(".%m-%d--%H-%M")
 endif
 " set viewdir=~/.vimtmp/view
 " autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | mkview | endif
@@ -1083,22 +1117,7 @@ autocmd InsertLeave * call Fcitx2en()
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
-
-" VIMINFO {{{4
-" COMMENTED OUT {{{5
-"  "       Maximum number of lines saved for each register
-"  %       When included, save and restore the buffer lis
-"  '       Maximum number of previously edited files for which the marks are remembere
-"  /       Maximum number of items in the search pattern history to be saved
-"  :        Maximum number of items in the command-line history
-"  <       Maximum number of lines saved for each register.
-"   @       Maximum number of items in the input-line history
-"  h       Disable the effect of 'hlsearch' when loading the viminfo
-"  n       Name of the viminfo file.  The name must immediately follow the 'n'. 
-"  r       Removable media.  The argument is a string
-"  s       Maximum size of an item in Kbyte
-" }}}5 COMMENTED OUT
-
-" let &viminfo="%203,'200,/800,h,<500,:500,s150,r/tmp,r" .expand("$BKDIR")."/tmp/.vim,n" . expand("$BKDIR") ."/.vim/.vinfo"
-" }}}4 ENDOF VIMINFO
 colorscheme molokai
+
+
+

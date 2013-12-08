@@ -3,5 +3,4 @@ export LC_ALL="zh_CN.UTF-8"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
-/usr/bin/start-pulseaudio-x11
-#exec dbus-launch awesome
+exec dbus-launch awesome

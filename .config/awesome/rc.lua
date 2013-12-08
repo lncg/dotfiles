@@ -1062,9 +1062,10 @@ autorunApps =
 	"xfce4-terminal --role=TempTerm",
 	-- "chromium --disk-cache-dir=/dev/shm/chromium",
 	"/home/cnfn/yunio/script/user_open",
+	"/usr/bin/start-pulseaudio-x11",
 }
--- if autorun then
---	for app = 1, #autorunApps do
---		awful.util.spawn_with_shell(autorunApps[app])
---	end
---end
+if autorun then
+	for app = 1, #autorunApps do
+		awful.util.spawn_with_shell(autorunApps[app])
+	end
+end
