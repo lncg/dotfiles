@@ -1,0 +1,25 @@
+set editing-mode vi
+set keymap vi
+
+"\e[1~": beginning-of-line        # home
+"\e[2~": insert-last-argument     # insert
+"\e[3~": delete-char              # delete
+"\e[4~": end-of-line              # end
+"\e[5~": history-search-backward  # page up
+"\e[6~": history-search-forward   # page up
+"\e[18~": history-search-backward # F7
+"\e[19~": history-search-forward  # F8
+
+
+set visible-stats on
+
+set completion-ignore-case on
+set match-hidden-files off
+set page-completions off
+set completion-query-items 350
+set show-all-if-ambiguous on
+
+set completion-prefix-display-length 2
+
+# set bell-style none
+set bell-style visible

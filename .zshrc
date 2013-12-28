@@ -69,3 +69,14 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/cn
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 zstyle ':completion::approximate:' max-errors 1 numeric
 source ~/.shell.sh
+
+
+
+bindkey "\e[1~" beginning-of-line        # home
+bindkey "\e[2~" insert-last-argument     # insert
+bindkey "\e[3~" delete-char              # delete
+bindkey "\e[4~" end-of-line              # end
+bindkey "\e[5~" history-search-backward  # page up
+bindkey "\e[6~" history-search-forward   # page up
+bindkey "\e[18~" history-search-backward # F7
+bindkey "\e[19~" history-search-forward  # F8
