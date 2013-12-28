@@ -203,7 +203,7 @@ function update_netstat()
 end
 netdata = {}
 netwidget = fixwidthtextbox('(net)')
-netwidget.width = 85
+netwidget.width = 95
 netwidget:set_align('center')
 netwidget_clock = timer({ timeout = 2 })
 netwidget_clock:connect_signal("timeout", update_netstat)
@@ -1056,11 +1056,12 @@ autorun = true
 autorunApps =
 {
 	"fcitx",
-	"/opt/bin/yunio",
+	"/opt/software/yunio",
 	"/opt/bin/nutstore",
 	"wmname LG3D",
 	"xfce4-terminal --role=TempTerm",
 	-- "chromium --disk-cache-dir=/dev/shm/chromium",
+	"chromium",
 	"/home/cnfn/yunio/script/user_open",
 	"/usr/bin/start-pulseaudio-x11",
 }
