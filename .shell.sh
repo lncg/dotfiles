@@ -34,7 +34,7 @@ TZ='Asia/Shanghai';
 export TZ
 
 
-if [[ $0 == "bash" ]]
+if [[ $0 == "-bash" ]]
 then
 	# bash
 	# set -u #必须初始化变量
