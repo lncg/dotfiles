@@ -49,10 +49,6 @@ ZSH_THEME="bira"
 plugins=(git vi-mode tmux z)
 
 source $ZSH/oh-my-zsh.sh
-<<<<<<< HEAD
-=======
-# source ~/.shell.sh
->>>>>>> 8e30b2d2ef24da7317264bfc541f94f0f4344e1c
 
 # User configuration
 
@@ -71,8 +67,5 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/cn
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-<<<<<<< HEAD
 zstyle ':completion::approximate:' max-errors 1 numeric
 source ~/.shell.sh
-=======
->>>>>>> 8e30b2d2ef24da7317264bfc541f94f0f4344e1c
