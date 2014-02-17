@@ -36,7 +36,6 @@ NeoBundle 'Twinside/vim-cuteErrorMarker'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
-" NeoBundle 'YouCompleteMe'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Lokaltog/TagHighlight'
@@ -64,7 +63,6 @@ NeoBundle 'toggle_words.vim'
 NeoBundle 'Tabular'
 NeoBundle 'VisIncr'
 NeoBundle 'Mark'
-" NeoBundle 'visualMarks.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'delimitMate.vim'
 NeoBundle 'grep.vim'
@@ -73,11 +71,9 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'Gundo'
 NeoBundle 'L9'
 NeoBundle 'genutils'
-NeoBundle 'git://github.com/myusuf3/numbers.vim.git'
 NeoBundle 'autoproto.vim'
 " NeoBundle 'QuickFixCurrentNumber'
 
-NeoBundle 'humiaozuzu/TabBar'
 "NeoBundle 'tpope/vim-afterimage'
 "NeoBundle 'Engspchk'
 "NeoBundle 'quickfixsigns'
@@ -160,8 +156,8 @@ au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb
 set winminheight=0   	"window minimum height
 set shortmess=atI
 if v:version > 702
-	set textwidth=80
-	set cc=80
+	" set textwidth=110
+	set cc=110
 endif
 
 set ffs=unix,dos,mac	"Default file types
@@ -249,9 +245,6 @@ nmap ws     <C-w>s     " 水平分割当前窗口
 
 map <Leader>bb :%!xxd<CR>
 map <Leader>br :%!xxd -r<CR>
-
-" Ctrl+A实现全选
-map <C-A> ggVG
 
 "Ctrl+V键粘贴
 inoremap <C-v> <esc>a<space><esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopaste<cr>
@@ -344,16 +337,6 @@ au BufWritePost *.cpp,*.h,*.c,*.def,*.py,*.java,*.html call system("ctags")
 set tags+=~/.vim/stl_tags
 set tags+=tags
 set tags+=~/.vim/systags 	"autoproto.vim
-
-"======================================================================
-" plugin - TabBar
-"======================================================================
-let g:Tb_MoreThanOne = 2
-let g:Tb_UseSingleClick = 1
-" let g:Tb_ForceSyntaxEnable = 1
-let g:Tb_AutoUpdt = 0
-let g:Tb_ForceSyntaxEnable = 0
-
 
 "======================================================================
 " plugin - shellinsidevim.vim

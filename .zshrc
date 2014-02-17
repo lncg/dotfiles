@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/cnfn/yunio/software/script:/opt/bin:/home/cnfn/.gem/ruby/2.0.0/bin:/opt/software/jdk//bin"
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/cnfn/yunio/software/script:/opt/bin:/home/cnfn/.gem/ruby/2.0.0/bin:/opt/software/jdk//bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions

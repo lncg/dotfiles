@@ -1057,7 +1057,6 @@ autorunApps =
 {
 	"fcitx",
 	"/opt/software/yunio",
-	"/opt/bin/nutstore",
 	"wmname LG3D",
 	"xfce4-terminal --role=TempTerm",
 	-- "chromium --disk-cache-dir=/dev/shm/chromium",

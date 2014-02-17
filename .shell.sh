@@ -1,4 +1,4 @@
-export PATH=$PATH:~/yunio/software/script:/opt/bin:~/.gem/ruby/2.0.0/bin
+export PATH=$PATH:~/yunio/software/script:/opt/bin:~/.gem/ruby/2.1.0/bin
 # alias wps='/opt/wps-office_8.1.0.3718~b1_x86/wps'
 # alias wpp='/opt/wps-office_8.1.0.3718~b1_x86/wpp'
 # alias wet='/opt/wps-office_8.1.0.3718~b1_x86/et'
@@ -121,7 +121,7 @@ alias mr='make rmmod'
 
 # mount
 alias mtc='if [[ ! -d "/mnt/wc" ]]; then sudo mkdir /mnt/wc; fi; sudo mount /dev/sda1 /mnt/wc'
-alias mtd='if [[ ! -d "/mnt/wd" ]]; then sudo mkdir /mnt/wd; fi; sudo mount /dev/sda8 /mnt/wd'
+alias mtd='if [[ ! -d "/mnt/wd" ]]; then sudo mkdir /mnt/wd; fi; sudo mount /dev/sda2 /mnt/wd'
 alias mtl='if [[ ! -d "/mnt/linux" ]]; then sudo mkdir /mnt/linux; fi; sudo mount /dev/sda5 /mnt/linux'
 
 alias umc='sudo umount /mnt/wc'
@@ -225,7 +225,6 @@ alias yaqd='yaourt -Qtd' #查找机器上所有以“依赖”形式安装的孤
 alias xx='sudo rmmod psmouse' #; sudo /etc/rc.d/openntpd start'
 alias np='sudo nm-applet'
 alias ta='tmux attach'
-alias jekyll='~/.gem/ruby/2.0.0/bin/jekyll'
 
 # alias rmouse='sudo rmmod psmouse'
 # alias imouse='sudo modprobe psmouse'
