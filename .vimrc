@@ -72,6 +72,7 @@ NeoBundle 'Gundo'
 NeoBundle 'L9'
 NeoBundle 'genutils'
 NeoBundle 'autoproto.vim'
+NeoBundle 'jiangmiao/auto-pairs'
 " NeoBundle 'QuickFixCurrentNumber'
 
 "NeoBundle 'tpope/vim-afterimage'
