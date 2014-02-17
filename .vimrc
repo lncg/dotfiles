@@ -47,9 +47,11 @@ NeoBundle 'hdima/python-syntax'
 
 " Tools
 NeoBundle 'motemen/git-vim'
+NeoBundle 'airblade/vim-gitgutter'
 " NeoBundle 'sessions.vim'
 NeoBundle 'mru.vim'
 NeoBundle 'YankRing.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'shellinsidevim.vim'
 NeoBundle 'FuzzyFinder'
 NeoBundle 'cmdline-completion'
@@ -230,12 +232,16 @@ map <C-k> <C-W>k
 map <C-j> <C-W>j
 
 "Tab configuration
-map <Leader>tn :tabnew<CR>
-map <Leader>nt :tabnext<CR>		" gt
+map <Leader>nt :tabnew<CR>
+map <Leader>tn :tabnext<CR>		" gt
+map <Leader>tp :tabprevious<CR>
 map <Leader>te :tabedit
 map <Leader>tc :tabclose<CR>
 map <Leader>tm :tabmove<CR>
 map <leader>bc :call <SID>BufcloseCloseIt()<CR>
+
+map <esc>n :tabnext<CR>
+map <esc>p :tabprevious<CR>
 
 "======================================================================
 " 窗口分割操作的快捷键
@@ -388,6 +394,11 @@ nnoremap <Leader>ga :GitAdd<Space>
 nnoremap <Leader>gc :GitCommit -a<CR>
 nnoremap <Leader>gp :GitPush -u origin master<CR>
 
+
+"======================================================================
+" plugin - vim-gitgutter
+"======================================================================
+let g:gitgutter_enabled = 1
 
 "======================================================================
 " plugin - autopreview
@@ -1179,3 +1190,105 @@ autocmd InsertLeave * call Fcitx2en()
 " let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 colorscheme molokai
+
+
+" Alt+数字切换Table快捷键设置
+function! TabPos_ActivateBuffer(num)
+	let s:count = a:num
+	exe "tabfirst"
+	exe "tabnext" s:count
+endfunction
+
+function! TabPos_Initialize()  
+	for i in range(1, 9)
+		exe "map <M-" . i . "> :call TabPos_ActivateBuffer(" . i . ")<CR>"
+	endfor
+	exe "map <M-0> :call TabPos_ActivateBuffer(10)<CR>"
+endfunction
+
+autocmd VimEnter * call TabPos_Initialize() 
+
+nn <M-1> 1gt
+nn <M-2> 2gt
+nn <M-3> 3gt
+nn <M-4> 4gt
+nn <M-5> 5gt
+nn <M-6> 6gt
+nn <M-7> 7gt
+nn <M-8> 8gt
+nn <M-9> 9gt
+nn <M-0> :tablast<CR> 
+
+
+
+"显示标签页的序号
+set tabline=%!MyTabLine()  " custom tab pages line
+function MyTabLine()
+	let s = '' " complete tabline goes here
+	" loop through each tab page
+	for t in range(tabpagenr('$'))
+		" set highlight
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" set the tab page number (for mouse clicks)
+		let s .= '%' . (t + 1) . 'T'
+		let s .= ' '
+		" set page number string
+		let s .= t + 1 . ' '
+		" get buffer names and statuses
+		let n = ''      "temp string for buffer names while we loop and check buftype
+		let m = 0       " &modified counter
+		let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
+		" loop through each buffer in a tab
+		for b in tabpagebuflist(t + 1)
+			" buffer types: quickfix gets a [Q], help gets [H]{base fname}
+			" others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
+			if getbufvar( b, "&buftype" ) == 'help'
+				let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
+			elseif getbufvar( b, "&buftype" ) == 'quickfix'
+				let n .= '[Q]'
+			else
+				let n .= pathshorten(bufname(b))
+			endif
+			" check and ++ tab's &modified count
+			if getbufvar( b, "&modified" )
+				let m += 1
+			endif
+			" no final ' ' added...formatting looks better done later
+			if bc > 1
+				let n .= ' '
+			endif
+			let bc -= 1
+		endfor
+		" add modified label [n+] where n pages in tab are modified
+		if m > 0
+			let s .= '[' . m . '+]'
+		endif
+		" select the highlighting for the buffer names
+		" my default highlighting only underlines the active tab
+		" buffer names.
+		if t + 1 == tabpagenr()
+			let s .= '%#TabLineSel#'
+		else
+			let s .= '%#TabLine#'
+		endif
+		" add buffer names
+		if n == ''
+			let s.= '[New]'
+		else
+			let s .= n
+		endif
+		" switch to no underlining and add final space to buffer list
+		let s .= ' '
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T'
+	" right-align the label to close the current tab page
+	if tabpagenr('$') > 1
+		let s .= '%=%#TabLineFill#�9Xclose'
+	endif
+	return s
+endfunction 
