@@ -83,6 +83,7 @@ NeoBundle 'jiangmiao/auto-pairs'
 
 " HTML/PHP
 NeoBundle 'MatchTag'
+NeoBundle 'lepture/vim-javascript'
 
 "NeoBundle 'matchit.zip'
 "NeoBundle 'phpErrorMarker'
