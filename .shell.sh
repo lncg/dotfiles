@@ -274,9 +274,6 @@ alias lx='ls -BX'                   # sort by extension
 alias lz='ls -rS'                   # sort by size
 alias lt='ls -rt'                   # sort by date
 
-alias rm='~/yunio/software/script/totrash'
-alias rmdir='~/yunio/software/script/totrash'
-
 alias cp='cp -i'
 alias mv='mv -i'
 
@@ -315,6 +312,17 @@ laa()
 
 alias loo='sudo /opt/lampp/lampp stop'
 
+function rm()
+{
+	stamp=$(date +"%Y-%m-%d_%H-%M-%S")
+	for args in "$@"
+	do
+		name=$(basename "$args")
+		mv -f "$args" ~/.local/share/Trash/files/"$name"__"$stamp"
+	done
+	# exit 0
+}
+alias rmdir=rm
 
 
 # http://samrowe.com/wordpress/2008/09/01/be-yourself-even-when-youre-root/
