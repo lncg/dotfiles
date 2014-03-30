@@ -840,13 +840,14 @@ function Do_OneFileMake()
 
   execute "normal :"
   if filereadable(outfilename)
-	if(g:iswindows==1)
-	  execute "!".toexename
-	else
-	  execute "!./".toexename
-	endif
+	  if(g:iswindows==1)
+		  execute "!".toexename
+	  else
+		  execute "!./".toexename
+	  endif
+  else
+	  execute "copen 5"
   endif
-  execute "copen 5"
 endfunction
 
 "进行make的设置
