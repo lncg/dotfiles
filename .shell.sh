@@ -366,8 +366,9 @@ then
                         tmux attach-session -t $session_id
                 fi
         fi
-else
-        startx
+elif [[ $(ps -e | grep awesome) < 1 ]]
+then
+	startx
 fi
 
 # Extract Files
