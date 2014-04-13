@@ -224,7 +224,7 @@ function update_memwidget()
     buffered = buffered:match('%d+')
     cached = cached:match('%d+')
     free = free + buffered + cached
-    local percent = 100 - math.floor(free / total * 100 + 0.5)
+	local percent = 100 - math.floor(free / total * 100 + 0.5)
     memwidget:set_markup('Mem <span color="#90ee90">'.. percent ..'%</span>')
 end
 memwidget = fixwidthtextbox('Mem ??')
@@ -1057,6 +1057,7 @@ autorunApps =
 {
 	"fcitx",
 	"kuaipan4uk",
+	"dropboxd",
 	"wmname LG3D",
 	"xfce4-terminal --role=TempTerm",
 	-- "chromium --disk-cache-dir=/dev/shm/chromium",
